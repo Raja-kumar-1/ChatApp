@@ -22,8 +22,8 @@ app.get('/healthz', (_req, res) => {
   res.json({ ok: true });
 });
 
-// Fallback to index.html for root and unknown paths (static SPA-ish)
-app.get('*', (_req, res) => {
+// Fallback to index.html for root and unknown paths (compatible with Express 5)
+app.get('/*', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
