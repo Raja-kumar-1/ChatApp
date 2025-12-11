@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Realtime Chat</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Chat Bridge</h1>
+      <p>Share the room code with an Android phone to chat instantly.</p>
+    </header>
+
+    <section class="card share">
+      <h2>Invite link</h2>
+      <p class="muted">Send this URL to anyone (Android/desktop). It updates to your current address; replace with a public URL if you expose the server.</p>
+      <div class="share-grid">
+        <label>
+          <span>Public URL</span>
+          <input id="invite-url" type="text" />
+        </label>
+        <div class="share-actions">
+          <button id="copy-url" type="button">Copy link</button>
+          <button id="qr-toggle" type="button">Show QR</button>
+        </div>
+      </div>
+      <div id="qr-wrap" class="qr" hidden>
+        <img id="qr-img" alt="QR code for invite link" />
+        <small class="muted">Scan on Android to open the chat.</small>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row">
+        <label>
+          <span>Your name</span>
+          <input id="name" type="text" placeholder="Alice" />
+        </label>
+        <label>
+          <span>Room code</span>
+          <input id="room" type="text" value="global" />
+        </label>
+        <button id="join">Join</button>
+      </div>
+    </section>
+
+    <section class="card chat" id="chat" hidden>
+      <div class="chat-header">
+        <div>
+          <strong id="room-label"></strong>
+          <small>Share this room with the phone to connect.</small>
+        </div>
+        <button id="leave">Leave</button>
+      </div>
+      <div id="messages" class="messages"></div>
+      <form id="message-form" class="form">
+        <input id="message" type="text" autocomplete="off" placeholder="Type a message" />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
